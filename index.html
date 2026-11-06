@@ -1,150 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ryan Hulvey's portfolio website.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ryan Hulvey | Portfolio</title>
   <style>
     :root {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #111;
-      background: #fff;
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
+      --ink: #111;
+      --muted: #3a3a3a;
+      --panel: #f4f4f4;
+      --line: #111;
+      --teal: #4f8ca0;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; padding-top: 73px; }
-    a { color: #4b7f8e; }
-    a:focus-visible, button:focus-visible { outline: 3px solid #347a96; outline-offset: 3px; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #f7f7f7;
+      padding-top: 74px;
+    }
+
+    a { color: var(--teal); }
 
     .top-bar {
       position: fixed;
-      inset: 0 0 auto;
-      z-index: 10;
-      min-height: 73px;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      min-height: 74px;
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
       align-items: center;
       gap: 20px;
-      padding: 8px 16px 8px 24px;
-      border: 1px solid #111;
-      background: #fff;
+      padding: 8px 24px 8px 24px;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line);
     }
 
     .name {
-      color: #111;
-      font-size: clamp(1.3rem, 3vw, 2.15rem);
+      font-size: clamp(1.6rem, 2vw, 2.5rem);
+      font-weight: 400;
       text-decoration: none;
+      color: var(--ink);
       white-space: nowrap;
     }
 
     .social-link {
       justify-self: center;
-      font-size: clamp(1.15rem, 3vw, 2.15rem);
+      font-size: clamp(1.1rem, 1.8vw, 2.3rem);
+      text-decoration: none;
+      color: #4d8191;
       white-space: nowrap;
     }
 
-    .menu-wrap { position: relative; justify-self: end; }
+    .menu-wrap {
+      position: relative;
+      justify-self: end;
+    }
+
     .menu-button {
-      width: 58px;
-      height: 50px;
+      width: 60px;
+      height: 48px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 7px;
+      gap: 6px;
       padding: 4px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
     }
-    .menu-button span { display: block; width: 100%; height: 9px; background: #050505; }
+
+    .menu-button span {
+      display: block;
+      width: 100%;
+      height: 6px;
+      background: #111;
+    }
 
     .menu-panel {
       position: absolute;
-      top: calc(100% + 13px);
-      right: -1px;
+      top: calc(100% + 10px);
+      right: 0;
       width: 220px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 14px rgba(0,0,0,0.08);
       padding: 8px;
-      border: 1px solid #111;
-      background: #fff;
-      box-shadow: 0 8px 20px rgb(0 0 0 / 14%);
     }
-    .menu-panel[hidden] { display: none; }
+
+    .menu-panel[hidden] {
+      display: none;
+    }
+
     .menu-panel a {
       display: block;
       padding: 12px 14px;
-      color: #111;
-      font-size: 1.05rem;
       text-decoration: none;
+      color: var(--ink);
+      font-size: 1.05rem;
     }
-    .menu-panel a:hover { background: #eef4f5; }
 
-    main { min-height: calc(100vh - 73px); }
-    .profile {
-      display: flex;
+    .menu-panel a:hover {
+      background: #eef5f6;
+    }
+
+    main {
+      min-height: calc(100vh - 74px);
+      padding: 30px 24px 40px;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) minmax(320px, 1.2fr) minmax(200px, 1fr);
       align-items: center;
-      flex-direction: column;
-      padding: 40px 20px 48px;
+      gap: 26px;
+    }
+
+    .side-photo {
       text-align: center;
     }
-    .photo-placeholder {
-      width: min(342px, 85vw);
-      height: 323px;
+
+    .side-photo .photo-box {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      background: #f0f0f0;
+      border: 2px solid #111;
       display: grid;
       place-items: center;
-      border: 2px solid #173b4c;
-      font-size: 1.35rem;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: #2f2f2f;
+      text-align: center;
     }
-    .major {
-      margin: 2px 0 12px;
-      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+
+    .center-stage {
+      text-align: center;
+    }
+
+    .center-stage .photo-box {
+      width: min(100%, 420px);
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      background: #f0f0f0;
+      border: 2px solid #111;
+      display: grid;
+      place-items: center;
+      font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+      color: #2f2f2f;
+    }
+
+    .arrow-button {
+      width: 54px;
+      height: 54px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      margin: 0 10px;
+    }
+
+    .arrow-button::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 18px solid transparent;
+      border-bottom: 18px solid transparent;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-left: 0 solid transparent;
+    }
+
+    .arrow-button.prev::before {
+      border-right: 30px solid #111;
+      border-left: 0;
+      left: 42%;
+    }
+
+    .arrow-button.next::before {
+      border-left: 30px solid #111;
+      border-right: 0;
+      left: 58%;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .center-stage h1 {
+      margin: 18px 0 8px;
+      font-size: clamp(1.7rem, 2.3vw, 2.6rem);
       font-weight: 400;
-      line-height: 1.3;
+      line-height: 1.2;
     }
-    .bio {
-      max-width: 485px;
+
+    .center-stage p {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+      line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .bio-caption {
+      margin-top: 18px;
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    }
+
+    .interests {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      padding: 0 8px;
+    }
+
+    .interests h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      font-weight: 400;
+    }
+
+    .interests ul {
       margin: 0;
-      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
-      line-height: 1.28;
+      padding-left: 28px;
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      line-height: 1.8;
     }
 
-    @media (max-width: 680px) {
-      body { padding-top: 65px; }
+    @media (max-width: 760px) {
+      body { padding-top: 66px; }
+
       .top-bar {
-        min-height: 65px;
+        min-height: 66px;
         grid-template-columns: 1fr auto;
-        gap: 4px 10px;
-        padding: 7px 12px;
+        gap: 6px 10px;
+        padding: 8px 12px;
       }
-      .name { grid-column: 1; grid-row: 1; }
-      .social-link { display: none; }
-      .menu-wrap { grid-column: 2; grid-row: 1; }
-      .menu-button { width: 48px; height: 44px; gap: 6px; }
-      .menu-button span { height: 7px; }
-      .profile { padding-top: 32px; }
-      .photo-placeholder { height: min(323px, 78vw); }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      .social-link {
+        display: none;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .side-photo {
+        display: none;
+      }
+
+      .center-stage .photo-box {
+        width: min(100%, 480px);
+      }
     }
   </style>
 </head>
 <body>
   <header class="top-bar">
     <a class="name" href="#home">Ryan Hulvey</a>
-    <!-- Replace the example email and LinkedIn URL with your own profile details. -->
+
     <a class="social-link" href="mailto:rchulvey@smcm.edu">Email</a>
     <a class="social-link" href="https://www.linkedin.com/">LinkedIn</a>
     <a class="social-link" href="https://github.com/RyanCHulvey">GitHub</a>
 
     <div class="menu-wrap">
       <button class="menu-button" id="menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="quick-menu">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
       <nav class="menu-panel" id="quick-menu" aria-label="Quick navigation" hidden>
         <a href="#home">Home</a>
         <a href="#about">About me</a>
@@ -153,41 +296,170 @@
   </header>
 
   <main id="home">
-    <section class="profile" id="about" aria-label="Introduction">
-      <div class="photo-placeholder" role="img" aria-label="Photo of Ryan placeholder">Photo of Face</div>
-      <h1 class="major">Computer Science/Mathematics Major</h1>
-      <p class="bio">Currently enrolled at St. Mary’s College of Maryland. Overall, a charismatic and aspiring learner driven to help others and make meaningful contributions to my community.</p>
+    <section class="hero" id="about">
+      <div class="gallery">
+        <div class="side-photo">
+          <div class="photo-box" id="left-photo">Other Photo</div>
+          <div class="bio-caption" id="left-caption">Other Description</div>
+        </div>
+
+        <div class="center-stage">
+          <div class="photo-box" id="center-photo">Photo of Face</div>
+
+          <div class="carousel-controls">
+            <button class="arrow-button prev" id="prevBtn" aria-label="Previous photo" type="button"></button>
+            <button class="arrow-button next" id="nextBtn" aria-label="Next photo" type="button"></button>
+          </div>
+
+          <h1 id="major">Computer Science/Mathematics Major</h1>
+          <p id="description">
+            Currently enrolled at St. Mary’s College of Maryland. Overall, a charismatic
+            and aspiring learner driven to help others and make meaningful contributions
+            to my community.
+          </p>
+        </div>
+
+        <div class="side-photo">
+          <div class="photo-box" id="right-photo">Other Photo</div>
+          <div class="bio-caption" id="right-caption">Other Description</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="interests">
+      <h2>Interests:</h2>
+      <ul>
+        <li>Video games/game development.</li>
+        <li>Backpacking through the East coast.</li>
+      </ul>
     </section>
   </main>
 
   <script>
-    const menuButton = document.getElementById('menu-button');
-    const quickMenu = document.getElementById('quick-menu');
+    const photos = [
+      {
+        center: "Photo of Face",
+        left: "Other Photo",
+        right: "Other Photo",
+        leftCaption: "Other Description",
+        rightCaption: "Other Description",
+        title: "Computer Science/Mathematics Major",
+        description: "Currently enrolled at St. Mary's College of Maryland. Overall, a charismatic and aspiring learner driven to help others and make meaningful contributions to my community."
+      },
+      {
+        center: "Photo of Face",
+        left: "Campus Photo",
+        right: "Other Photo",
+        leftCaption: "Campus Life",
+        rightCaption: "Other Description",
+        title: "Campus Life",
+        description: "Learning, growing, and discovering new opportunities while building my future."
+      },
+      {
+        center: "Photo of Face",
+        left: "Outdoor Photo",
+        right: "Other Photo",
+        leftCaption: "Backpacking",
+        rightCaption: "Other Description",
+        title: "Adventurous Spirit",
+        description: "Exploring nature, traveling, and appreciating the outdoors wherever I go."
+      },
+      {
+        center: "Photo of Face",
+        left: "Game Photo",
+        right: "Other Photo",
+        leftCaption: "Game Development",
+        rightCaption: "Other Description",
+        title: "Creative Builder",
+        description: "Designing ideas, learning systems, and making projects that turn creativity into experiences."
+      },
+      {
+        center: "Headshot",
+        left: "Other Photo",
+        right: "Community Photo",
+        leftCaption: "Other Description",
+        rightCaption: "Community",
+        title: "Helping Others",
+        description: "Working with people, lifting others up, and contributing meaningfully to the communities around me."
+      }
+    ];
+
+    let currentIndex = 0;
+
+    const centerPhoto = document.getElementById("center-photo");
+    const leftPhoto = document.getElementById("left-photo");
+    const rightPhoto = document.getElementById("right-photo");
+    const leftCaption = document.getElementById("left-caption");
+    const rightCaption = document.getElementById("right-caption");
+    const major = document.getElementById("major");
+    const description = document.getElementById("description");
+
+    function renderPhoto(index) {
+      const item = photos[index];
+
+      centerPhoto.textContent = item.center;
+      leftPhoto.textContent = item.left;
+      rightPhoto.textContent = item.right;
+
+      leftCaption.textContent = item.leftCaption;
+      rightCaption.textContent = item.rightCaption;
+
+      major.textContent = item.title;
+      description.textContent = item.description;
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+      renderPhoto(currentIndex);
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % photos.length;
+      renderPhoto(currentIndex);
+    });
+
+    const menuButton = document.getElementById("menu-button");
+    const quickMenu = document.getElementById("quick-menu");
 
     function setMenuOpen(isOpen) {
       quickMenu.hidden = !isOpen;
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-      menuButton.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
     }
 
-    menuButton.addEventListener('click', () => {
-      setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true');
+    menuButton.addEventListener("click", () => {
+      setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
     });
 
-    quickMenu.addEventListener('click', (event) => {
-      if (event.target.closest('a')) setMenuOpen(false);
+    quickMenu.addEventListener("click", (event) => {
+      if (event.target.closest("a")) setMenuOpen(false);
     });
 
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('.menu-wrap')) setMenuOpen(false);
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".menu-wrap")) setMenuOpen(false);
     });
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
         setMenuOpen(false);
         menuButton.focus();
       }
+
+      if (event.key === "ArrowLeft") {
+        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        renderPhoto(currentIndex);
+      }
+
+      if (event.key === "ArrowRight") {
+        currentIndex = (currentIndex + 1) % photos.length;
+        renderPhoto(currentIndex);
+      }
     });
+
+    renderPhoto(currentIndex);
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
