@@ -255,3 +255,13 @@ main {
     margin-top: 36px;
   }
 }
+
+.intro h1 {
+  position: relative;
+  top: 20px;
+}
+
+.intro > p:last-child {
+  position: relative;
+  top: 8px;
+}
