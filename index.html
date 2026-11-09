@@ -3,194 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071b3a" />
   <title>Ryan Hulvey | Portfolio</title>
-  <style>
-    :root {
-      --ink: #111;
-      --teal: #4f8ca0;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: #f7f7f7;
-      padding-top: 74px;
-    }
-
-    a { color: var(--teal); }
-
-    .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      min-height: 74px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
-      align-items: center;
-      gap: 20px;
-      padding: 8px 24px;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid var(--ink);
-    }
-
-    .name {
-      font-size: clamp(1.6rem, 2vw, 2.5rem);
-      font-weight: 400;
-      text-decoration: none;
-      color: var(--ink);
-      white-space: nowrap;
-    }
-
-    .social-link {
-      justify-self: center;
-      font-size: clamp(1.1rem, 1.8vw, 2.3rem);
-      text-decoration: none;
-      color: #4d8191;
-      white-space: nowrap;
-    }
-
-    .menu-wrap {
-      position: relative;
-      justify-self: end;
-    }
-
-    .menu-button {
-      width: 60px;
-      height: 48px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-      padding: 4px;
-    }
-
-    .menu-button span {
-      display: block;
-      width: 100%;
-      height: 6px;
-      background: var(--ink);
-    }
-
-    .menu-panel {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 0;
-      width: 220px;
-      background: white;
-      border: 1px solid var(--ink);
-      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.08);
-      padding: 8px;
-    }
-
-    .menu-panel[hidden] { display: none; }
-
-    .menu-panel a {
-      display: block;
-      padding: 12px 14px;
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 1.05rem;
-    }
-
-    .menu-panel a:hover { background: #eef5f6; }
-
-    main {
-      min-height: calc(100vh - 74px);
-      padding: 30px 24px 40px;
-    }
-
-    .gallery {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: start;
-      gap: 26px;
-    }
-
-    .photo-card { text-align: center; }
-
-    .photo-card img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      background: #f0f0f0;
-      border: 2px solid var(--ink);
-    }
-
-    .photo-caption {
-      margin-top: 18px;
-      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-    }
-
-    .interests {
-      max-width: 1200px;
-      margin: 28px auto 0;
-      padding: 0 8px;
-    }
-
-    .interests h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.5rem, 2vw, 2.2rem);
-      font-weight: 400;
-    }
-
-    .interests ul {
-      margin: 0;
-      padding-left: 28px;
-      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-      line-height: 1.8;
-    }
-
-    @media (max-width: 760px) {
-      body { padding-top: 66px; }
-
-      .top-bar {
-        min-height: 66px;
-        grid-template-columns: 1fr auto;
-        gap: 6px 10px;
-        padding: 8px 12px;
-      }
-
-      .social-link { display: none; }
-
-      main { padding: 20px 16px 32px; }
-
-      .gallery { gap: 12px; }
-
-      .photo-caption {
-        margin-top: 10px;
-        font-size: clamp(0.8rem, 3vw, 1rem);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .gallery { gap: 8px; }
-
-      .photo-card img { border-width: 1px; }
-
-      .photo-caption { overflow-wrap: anywhere; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="top-bar">
     <a class="name" href="#home">Ryan Hulvey</a>
 
-    <a class="social-link" href="mailto:rchulvey@smcm.edu">Email</a>
-    <a class="social-link" href="https://www.linkedin.com/">LinkedIn</a>
-    <a class="social-link" href="https://github.com/RyanCHulvey">GitHub</a>
+    <nav class="social-links" aria-label="Social links">
+      <a href="mailto:rchulvey@smcm.edu">Email</a>
+      <a href="https://www.linkedin.com/">LinkedIn</a>
+      <a href="https://github.com/RyanCHulvey">GitHub</a>
+    </nav>
 
     <div class="menu-wrap">
       <button
@@ -209,36 +34,51 @@
       <nav class="menu-panel" id="quick-menu" aria-label="Quick navigation" hidden>
         <a href="#home">Home</a>
         <a href="#about">About me</a>
+        <a href="#interests">Interests</a>
       </nav>
     </div>
   </header>
 
   <main id="home">
-    <section class="gallery" id="about" aria-label="Photo gallery">
-      <div class="photo-card">
-        <img src="photos/SEC%2B%20Photo.png" alt="SEC+ Photo" />
-        <div class="photo-caption">INSERT DESCRIPTION HERE</div>
+    <section class="hero" aria-labelledby="intro-heading">
+      <div class="hero-banner">
+        <img
+          class="banner-photo"
+          src="photos/St%20Marys%20Photo.png"
+          alt="View of St. Mary's College"
+        />
       </div>
 
-      <div class="photo-card">
-        <img src="photos/Headshot%20Photo.jpg" alt="Headshot Photo" />
-        <div class="photo-caption">INSERT DESCRIPTION HERE</div>
-      </div>
+      <div class="hero-content" id="about">
+        <img
+          class="headshot"
+          src="photos/Headshot%20Photo.jpg"
+          alt="Headshot of Ryan Hulvey"
+        />
 
-      <div class="photo-card">
-        <img src="photos/Hiking%20Photo.JPEG" alt="Hiking Photo" />
-        <div class="photo-caption">INSERT DESCRIPTION HERE</div>
+        <div class="intro">
+          <p class="eyebrow">Portfolio</p>
+          <h1 id="intro-heading">Hi, I’m Ryan Hulvey.</h1>
+          <p>
+            I’m a student at St. Mary’s College of Maryland. Welcome to my
+            portfolio!
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="interests">
-      <h2>Interests:</h2>
+    <section class="interests" id="interests">
+      <h2>Interests</h2>
       <ul>
-        <li>Video games/game development.</li>
-        <li>Backpacking through the East coast.</li>
+        <li>Video games and game development</li>
+        <li>Backpacking through the East Coast</li>
       </ul>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Ryan Hulvey</p>
+  </footer>
 
   <script>
     const menuButton = document.getElementById("menu-button");
