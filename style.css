@@ -1,1 +1,257 @@
+:root {
+  --navy: #071b3a;
+  --navy-light: #102b55;
+  --yellow: #ffd447;
+  --white: #ffffff;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 74px;
+  background: var(--navy);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--yellow);
+}
+
+.top-bar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px clamp(16px, 4vw, 48px);
+  background: var(--navy);
+  border-bottom: 2px solid var(--yellow);
+}
+
+.name {
+  color: var(--white);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 36px);
+  margin-left: auto;
+}
+
+.social-links a,
+.menu-panel a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.social-links a:hover,
+.menu-panel a:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-underline-offset: 4px;
+}
+
+.menu-wrap {
+  position: relative;
+}
+
+.menu-button {
+  width: 48px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border: 2px solid var(--yellow);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-button span {
+  width: 100%;
+  height: 3px;
+  display: block;
+  background: var(--yellow);
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 200px;
+  padding: 8px;
+  border: 2px solid var(--yellow);
+  border-radius: 6px;
+  background: var(--navy-light);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 25%);
+}
+
+.menu-panel[hidden] {
+  display: none;
+}
+
+.menu-panel a {
+  display: block;
+  padding: 10px 12px;
+}
+
+main {
+  padding-bottom: 36px;
+}
+
+.hero-banner {
+  height: clamp(220px, 36vw, 420px);
+  overflow: hidden;
+  border-bottom: 4px solid var(--yellow);
+  background: var(--navy-light);
+}
+
+.banner-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-content {
+  width: min(100% - 40px, 1000px);
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+  margin: -76px auto 0;
+  position: relative;
+}
+
+.headshot {
+  width: clamp(140px, 21vw, 220px);
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  border: 5px solid var(--yellow);
+  border-radius: 50%;
+  background: var(--navy-light);
+  object-fit: cover;
+}
+
+.intro {
+  padding: 24px 0 0;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--yellow);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+}
+
+.intro > p:last-child {
+  max-width: 600px;
+  margin: 12px 0 0;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.interests {
+  width: min(100% - 40px, 1000px);
+  margin: 56px auto 0;
+  padding: 24px clamp(20px, 4vw, 36px);
+  border: 2px solid var(--yellow);
+  border-radius: 10px;
+  background: var(--navy-light);
+}
+
+.interests h2 {
+  margin: 0 0 12px;
+  color: var(--yellow);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.interests ul {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.interests li + li {
+  margin-top: 6px;
+}
+
+.site-footer {
+  padding: 18px 20px;
+  border-top: 1px solid var(--yellow);
+  color: var(--white);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 650px) {
+  body {
+    padding-top: 66px;
+  }
+
+  .top-bar {
+    min-height: 66px;
+    gap: 12px;
+    padding-inline: 14px;
+  }
+
+  .social-links {
+    display: none;
+  }
+
+  .hero-banner {
+    height: 250px;
+  }
+
+  .hero-content {
+    width: min(100% - 32px, 500px);
+    flex-direction: column;
+    gap: 12px;
+    margin-top: -72px;
+    text-align: center;
+  }
+
+  .headshot {
+    width: 150px;
+  }
+
+  .intro {
+    padding-top: 0;
+  }
+
+  .interests {
+    width: calc(100% - 32px);
+    margin-top: 36px;
+  }
+}
