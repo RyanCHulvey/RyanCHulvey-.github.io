@@ -49,24 +49,27 @@ a {
   white-space: nowrap;
 }
 
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 3vw, 36px);
-}
-
+.resume-link,
 .social-links a,
 .menu-panel a {
   font-weight: 700;
   text-decoration: none;
 }
 
+.resume-link:hover,
 .social-links a:hover,
 .menu-panel a:hover {
   color: var(--white);
   text-decoration: underline;
   text-decoration-color: var(--yellow);
   text-underline-offset: 4px;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 36px);
+  margin-left: auto;
 }
 
 .menu-wrap {
@@ -226,11 +229,6 @@ main {
   }
 
   .social-links {
-    display: flex;
-    margin-right: auto;
-  }
-
-  .social-links a:not(:first-child) {
     display: none;
   }
 
@@ -269,4 +267,3 @@ main {
   position: relative;
   top: 18px;
 }
-
