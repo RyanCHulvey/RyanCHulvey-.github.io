@@ -258,10 +258,10 @@ main {
 
 .intro h1 {
   position: relative;
-  top: 20px;
+  top: 22px;
 }
 
 .intro > p:last-child {
   position: relative;
-  top: 10px;
+  top: 14px;
 }
