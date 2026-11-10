@@ -182,7 +182,8 @@ main {
   font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
-.interests {
+.interests,
+.experience {
   width: min(100% - 40px, 1000px);
   margin: 56px auto 0;
   padding: 24px clamp(20px, 4vw, 36px);
@@ -191,18 +192,21 @@ main {
   background: var(--navy-light);
 }
 
-.interests h2 {
+.interests h2,
+.experience h2 {
   margin: 0 0 12px;
   color: var(--yellow);
   font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
-.interests ul {
+.interests ul,
+.experience ul {
   margin: 0;
   padding-left: 24px;
 }
 
-.interests li + li {
+.interests li + li,
+.experience li + li {
   margin-top: 6px;
 }
 
@@ -252,7 +256,8 @@ main {
     padding-top: 0;
   }
 
-  .interests {
+  .interests,
+  .experience {
     width: calc(100% - 32px);
     margin-top: 36px;
   }
